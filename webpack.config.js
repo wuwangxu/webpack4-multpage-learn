@@ -33,7 +33,7 @@ const config = {
     },
     devtool: "source-map",
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        // new CleanWebpackPlugin(['dist']),
         new webpack.ProvidePlugin({ //加载jq
             $: 'jquery'
         }), new HtmlWebpackPlugin({
@@ -62,14 +62,6 @@ const config = {
     externals: {} // 用来配置require的返回。一般用于加载cdn
 };
 
-function buildEntries() {
-    const result = glob.sync("src/**/*.js");
-    return result.reduce((pre, item) => {
-        const one = path.parse(item);
-        return pre[one.dir.split("/").slice(-1)[0]] = item;
-    }, {});
-}
-
 function buildEntriesAndHTML() {
     // 用来构建entery
     const result = glob.sync("src/**/*.js");
@@ -81,11 +73,13 @@ function buildEntriesAndHTML() {
     const htmls = [];
     result.forEach(item => {
         const one = path.parse(item);
-        entries[one.dir.split("/").slice(-1)[0]] = "./" + item;
+        const outputfile = one.dir.split("/").slice(-1)[0];
+        entries[outputfile] = "./" + item;
         htmls.push(new HtmlWebpackPlugin({
             ...config,
             template: "./" + one.dir + "/index.html",
-            chunks: [item]
+            filename: "./" + outputfile + ".html",
+            chunks: [outputfile]
         }));
     })
     return {
