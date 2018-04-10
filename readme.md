@@ -4,6 +4,6 @@
 
 
 tips:
-- extract-text-webpack-plugin必须4+版本才可以在webpack中用
+- extract-text-webpack-plugin必须4+版本才可以在webpack4中用
 
 目前进度：。。。未完成

@@ -13,9 +13,9 @@ const config = {
         path: __dirname + "/dist"
     },
     module: {
-        rules: [{ //css-loader配置
+        rules: [{
             test: /\.css$/,
-            use: ExtractTextPlugin.extract({ //用于css分离
+            use: ExtractTextPlugin.extract({
                 fallback: "style-loader",
                 use: "css-loader"
             })
