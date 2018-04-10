@@ -7,4 +7,4 @@ import './index.css';
 $(() => {
     console.log("hhh")
 })
-console.log("i lova")
+console.log("i lova", process.env.NODE_ENV)

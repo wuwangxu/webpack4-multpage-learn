@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "babel-runtime": "^6.26.0",
+        "clean-webpack-plugin": "^0.1.19",
         "jquery": "^3.3.1"
     }
 }
