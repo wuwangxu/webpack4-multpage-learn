@@ -45,6 +45,7 @@ const base = {
         }],
     },
     plugins: [
+        new CleanWebpackPlugin(['dist']),
         new webpack.ProvidePlugin({ //加载jq
             $: 'jquery'
         }),
@@ -76,7 +77,7 @@ function buildEntriesAndHTML() {
         htmls.push(new HtmlWebpackPlugin({
             ...config,
             template: "./" + one.dir + "/index.html",
-            filename: "./" + outputfile + "/index.html", // 输出html文件的路径
+            filename: outputfile === "index" ? "./index.html" : "./" + outputfile + "/index.html", // 输出html文件的路径
             chunks: [outputfile]
         }));
     });

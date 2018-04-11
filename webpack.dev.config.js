@@ -10,8 +10,8 @@ base.devServer = {
     port: 8000,
     hot: true
 };
-base.devtool = "source-map";
-base.plugins.push(new webpack.HotModuleReplacementPlugin());
+base.devtool = "inline-source-map";
+base.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin(), );
 const config = {
     ...base
 };

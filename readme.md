@@ -6,7 +6,11 @@
 tips:
 - extract-text-webpack-plugin必须4+版本才可以在webpack4中用
 
-目前进度：
+目前进度：基本可用开发小型多页面。
+```
+npm run dev // 开发模式 8000端口
+npm run build // 构建
+```
 
 
 ### babel
