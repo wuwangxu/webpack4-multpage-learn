@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); // html引擎
 //const ExtractTextPlugin = require('extract-text-webpack-plugin'); //抽离css
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const final = buildEntriesAndHTML();
-const config = {
+const base = {
     entry: final.entries,
     output: {
         filename: "[name].js",
@@ -29,11 +29,22 @@ const config = {
                     cacheDirectory: true // 使用缓存
                 }
             }
-        }]
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            use: [{
+                loader: 'file-loader'
+            }]
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            use: [{
+                loader: 'url-loader', // base64
+                options: {
+                    limit: 8192
+                }
+            }]
+        }],
     },
-    devtool: "source-map",
     plugins: [
-        new CleanWebpackPlugin(['dist']),
         new webpack.ProvidePlugin({ //加载jq
             $: 'jquery'
         }),
@@ -41,23 +52,13 @@ const config = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin({
-            ENV: JSON.stringify("233333") // 设置一些全局变量
         }), ...final.htmls
     ],
     resolve: {
         extensions: [".js", ".json", ".jsx", ".css"]
     },
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 8000,
-        hot: true
-    },
     externals: {} // 用来配置require的返回。一般用于加载cdn
-};
+}
 
 function buildEntriesAndHTML() {
     // 用来构建entery
@@ -78,10 +79,10 @@ function buildEntriesAndHTML() {
             filename: "./" + outputfile + "/index.html", // 输出html文件的路径
             chunks: [outputfile]
         }));
-    })
+    });
     return {
         entries,
         htmls
     }
 }
-module.exports = config;
+module.exports = base;

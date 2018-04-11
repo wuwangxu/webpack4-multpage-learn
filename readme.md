@@ -74,7 +74,12 @@ jq多页面应用肯定是要在页面里面写一堆html的，默认情况下we
 todo
 
 ### 开发环境和生产环境两份配置
-todo
+```
+webpack -config ./webpack.xxx.js
+```
+webpack.base.config.js 公用配置
+webpack.dev.config.js 开发环境配置
+webpack.prod.config.js 生产环境配置
 
 附：[webpack4一些迁移指南](https://github.com/dwqs/blog/issues/60)
 
