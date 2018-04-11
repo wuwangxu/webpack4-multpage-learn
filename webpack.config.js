@@ -33,12 +33,9 @@ const config = {
     },
     devtool: "source-map",
     plugins: [
-        // new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['dist']),
         new webpack.ProvidePlugin({ //加载jq
             $: 'jquery'
-        }), new HtmlWebpackPlugin({
-            template: "./src/index/index.html",
-            chunks: ["main"] //加载那些入口文件
         }),
         //new ExtractTextPlugin("[name].css"), // 样式抽离不支持热更新
         new MiniCssExtractPlugin({
@@ -78,7 +75,7 @@ function buildEntriesAndHTML() {
         htmls.push(new HtmlWebpackPlugin({
             ...config,
             template: "./" + one.dir + "/index.html",
-            filename: "./" + outputfile + ".html",
+            filename: "./" + outputfile + "/index.html", // 输出html文件的路径
             chunks: [outputfile]
         }));
     })

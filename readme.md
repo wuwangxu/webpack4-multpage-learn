@@ -21,6 +21,9 @@ todo
 ### css_module
 todo?
 
+### 添加类似模板那样的头部、尾部、申部页面拼装
+todo
+
 ### 根据src目录下的目录结构自动生成html模板和配置webpack的入口文件
 这样就不需要手动去设置entry和Pugin中手动生成html了
 我们约定了目录结构如下
@@ -74,6 +77,7 @@ todo
 todo
 
 附：[webpack4一些迁移指南](https://github.com/dwqs/blog/issues/60)
+
 只作为一个学习项目。一些缓存优化和分包加载方面的内容尚未考虑。todo
 
 
