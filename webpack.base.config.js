@@ -42,6 +42,9 @@ const base = {
                     limit: 8192
                 }
             }]
+        }, {
+            test: /\.html$/, // 以字符串形式引入
+            use: 'raw-loader'
         }],
     },
     plugins: [

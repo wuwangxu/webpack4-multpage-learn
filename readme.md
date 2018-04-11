@@ -5,6 +5,7 @@
 
 tips:
 - extract-text-webpack-plugin必须4+版本才可以在webpack4中用
+- webpack4中必须提供mode参数，process.env.NODE_ENV的值为production或development
 
 目前进度：基本可用开发小型多页面。
 ```
@@ -74,8 +75,14 @@ function buildEntriesAndHTML() {
 ```
 
 ### html热更新（应该说是刷新）
-jq多页面应用肯定是要在页面里面写一堆html的，默认情况下webpack server html是不会热更新。
-todo
+jq多页面应用肯定是要在页面里面写一堆html的，默认情况下webpack server html是不会热更新，html-webpack-plugin是不会触发HMR的。
+通过raw-loader插件，开发模式下在每个页面的入口把页面的htmlrequire进去即可,这样就能实现热刷新了23333
+```
+if (process.env.NODE_ENV === "development") {
+    require("./index.html");
+}
+```
+这样每个文件引入似乎很傻。应该让工具自动化操作，应该要写个loader在指定文件开头注入上面那段代码，然后再给babel处理。todo学习一波loader
 
 ### 开发环境和生产环境两份配置
 ```

@@ -1,6 +1,9 @@
 import './index.css';
-// console.log("hello world")
-// document.body.innerHTML = "<span>xxxx</span>"
+
+if (process.env.NODE_ENV === "development") {
+    require("./index.html");
+}
+
 (async function aaa(params) {
     await console.log(23333)
 })()
