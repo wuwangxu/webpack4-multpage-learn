@@ -8,17 +8,23 @@ tips:
 - webpack4中必须提供mode参数，process.env.NODE_ENV的值为production或development
 
 目前进度：基本可用开发小型多页面。
+
+使用
 ```
-npm run dev // 开发模式 8000端口
-npm run build // 构建
+yarn
+yarn dev // 开发模式 8000端口
+yarn build // 构建
 ```
 
 
 ### babel
+
+babel的强大性不多说了。我们写前端最重要的就是装x。使用各种高大上的ES6789语法来写js，但是浏览器不兼容就需要babel来进行转码了。
+
 - babel是不转换新的关键字那些语法。需要通过```yarn add babel-plugin-transform-runtime --dev```和``` yarn add babel-runtime --save```。再.babelrc中配置。[参考](http://babeljs.io/docs/plugins/transform-runtime/)
 
 ### css样式抽离和热更新
-一般都是使用extract-text-webpack-plugin来实现css样式抽离，但是抽离的样式是不支持热更新的。所以需要mini-css-extract-plugin代替extract-text-webpack-plugin。然后使用css-hot-loader这个loader来实现。
+一般都是使用extract-text-webpack-plugin来实现css样式抽离，但是抽离的样式是不支持热更新的。在webpack4的文档中，官方也推荐我们使用mini-css-extract-plugin代替extract-text-webpack-plugin，并且该plugin配合css-hot-loader可以实现样式抽离和热刷新的。
 
 ### postcss
 todo
@@ -120,6 +126,8 @@ webpack.prod.config.js 生产环境配置
 
 附：[webpack4一些迁移指南](https://github.com/dwqs/blog/issues/60)
 
+
+本人水平有限，有不足敬请大佬指出。
 只作为一个学习项目。一些缓存优化和分包加载方面的内容尚未考虑。todo
 
 
