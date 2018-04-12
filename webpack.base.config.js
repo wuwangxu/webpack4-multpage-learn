@@ -21,15 +21,6 @@ const base = {
                 "css-loader"
             ]
         }, {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true // 使用缓存
-                }
-            }
-        }, {
             test: /\.(png|jpg|gif)$/,
             use: [{
                 loader: 'file-loader'

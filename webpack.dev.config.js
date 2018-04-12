@@ -11,7 +11,19 @@ base.devServer = {
     hot: true
 };
 base.devtool = "inline-source-map";
-base.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin(), );
+base.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
+base.module.rules.push({
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: [{
+        loader: 'babel-loader',
+        options: {
+            cacheDirectory: true // 使用缓存
+        }
+    }, {
+        loader: path.resolve("./inject-loader.js") // 开发模式使用注入代码实现html热更新
+    }]
+});
 const config = {
     ...base
 };

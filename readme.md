@@ -1,6 +1,6 @@
 ### wepack4搭建多页面脚手架学习
 
-前言：以前刚接触webpack的时候还是1，当时大概过了下文档操作了一下。后来开发的时候基本都直接用脚手架。所以趁着webpack4刚出不久，重新学习加复习下。
+前言：以前刚接触webpack的时候还是1，当时大概过了下文档操作了一下[当时写的一些注释](https://github.com/673800357/webpack-basic-config)。后来开发的时候基本写react都是用的create-react-app或者找别人的搭好的脚手架用。所以趁着找到实习后的间隙加上webpack4刚出也不算久，重新学习加复习下webpack的一些知识。
 
 
 tips:
@@ -26,7 +26,7 @@ todo
 ### css_module
 todo?
 
-### 添加类似模板那样的头部、尾部、申部页面拼装
+### 添加类似模板那样的头部、尾部、身部页面拼装
 todo
 
 ### 根据src目录下的目录结构自动生成html模板和配置webpack的入口文件
@@ -82,7 +82,33 @@ if (process.env.NODE_ENV === "development") {
     require("./index.html");
 }
 ```
-这样每个文件引入似乎很傻。应该让工具自动化操作，应该要写个loader在指定文件开头注入上面那段代码，然后再给babel处理。todo学习一波loader
+这样每个文件引入似乎很傻。应该让工具自动化操作，应该要写个loader在指定文件开头注入上面那段代码，然后再给babel处理。根目录下自己写了个inject-loader。loader的原理其实就是接受上次的处理结果，把返回值传给下个loader使用。我们在js文件babel处理前使用该loader即可
+```
+{
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: [{
+        loader: 'babel-loader',
+        options: {
+            cacheDirectory: true // 使用缓存
+        }
+    }, {
+        loader: path.resolve("./inject-loader.js") // 开发模式使用注入代码实现html热更新
+    }]
+}
+//inject-loader.js
+const path = require("path");
+module.exports = function(source) {
+    if (path.basename(this.resourcePath) === "index.js") {
+        // 我们约定好只有index.js才会注入注入加载代码
+        return `if (process.env.NODE_ENV === "development") {
+        require("./index.html");
+    };` + source;
+    }
+    return source
+}
+```
+这样一个简单的loader就完成了2333，实现了自动化注入html热刷新代码
 
 ### 开发环境和生产环境两份配置
 ```
