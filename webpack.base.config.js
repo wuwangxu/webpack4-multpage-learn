@@ -36,6 +36,17 @@ const base = {
         }, {
             test: /\.html$/, // 以字符串形式引入
             use: 'raw-loader'
+        }, {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: [{
+                loader: 'babel-loader',
+                options: {
+                    cacheDirectory: true // 使用缓存
+                }
+            }, {
+                loader: path.resolve("./inject-loader.js") // 开发模式使用注入代码实现html热更新，注入normalize.css
+            }]
         }],
     },
     plugins: [

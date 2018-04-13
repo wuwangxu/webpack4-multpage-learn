@@ -24,6 +24,8 @@ babel的强大性不多说了。我们写前端最重要的就是装x。使用�
 - babel是不转换新的关键字那些语法。需要通过```yarn add babel-plugin-transform-runtime --dev```和``` yarn add babel-runtime --save```。再.babelrc中配置。[参考](http://babeljs.io/docs/plugins/transform-runtime/)
 
 ### css样式抽离和热更新
+引入normalize.css消除浏览器差异
+
 一般都是使用extract-text-webpack-plugin来实现css样式抽离，但是抽离的样式是不支持热更新的。在webpack4的文档中，官方也推荐我们使用mini-css-extract-plugin代替extract-text-webpack-plugin，并且该plugin配合css-hot-loader可以实现样式抽离和热刷新的。
 
 ### postcss
@@ -51,9 +53,13 @@ todo
 		- index.js
 		- index.html
 		- index.css
+
 我们要做的操作就是
+
 1、扫描src目录下，取得index other other...这些目录名，然后把目录名作为输入的HtmlWebpackPlugin生成html的文件名，并且引用对应的js
+
 2、设置入口的entry参数
+
 ```
 function buildEntriesAndHTML() {
     // 用来构建entery

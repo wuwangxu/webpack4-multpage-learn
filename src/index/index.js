@@ -1,4 +1,7 @@
 import './index.css';
+import b from "./b";
+// import "normalize.css";
+b();
 (async function aaa(params) {
     await console.log(23333)
 })()
