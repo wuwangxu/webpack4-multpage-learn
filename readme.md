@@ -34,8 +34,10 @@ todo
 ### css_module
 todo?
 
-### 添加类似模板那样的头部、尾部、身部页面拼装
-todo
+### 添加类似模板那样的头部、尾部、身部页面拼装 html-loader
+```
+
+```
 
 ### 根据src目录下的目录结构自动生成html模板和配置webpack的入口文件
 这样就不需要手动去设置entry和Pugin中手动生成html了
