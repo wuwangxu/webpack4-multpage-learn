@@ -18,7 +18,8 @@ const base = {
       use: [
         'css-hot-loader', //支持热更新
         MiniCssExtractPlugin.loader,
-        "css-loader"
+        "css-loader",
+        'postcss-loader'
       ]
     }, {
       test: /\.(png|jpg|gif)$/,
