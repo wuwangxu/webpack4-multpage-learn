@@ -25,6 +25,14 @@ babel 的强大性不多说了。我们写前端最重要的就是装 x。使用
 
 - babel 是不转换新的关键字那些语法。需要通过`yarn add babel-plugin-transform-runtime --dev`和`yarn add babel-runtime --save`。再.babelrc 中配置。[参考](http://babeljs.io/docs/plugins/transform-runtime/)
 
+### jquery 全局加载
+
+```javascript
+    new webpack.ProvidePlugin({ //加载jq
+      $: 'jquery'
+    }),
+```
+
 ### css 样式抽离和热更新
 
 引入 normalize.css 消除浏览器差异
