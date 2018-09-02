@@ -161,6 +161,14 @@ module.exports = function(source) {
 
 这样一个简单的 loader 就完成了，实现了自动化注入 html 热刷新代码
 
+### eslint 代码规范化
+
+todo
+
+### 代吗格式化
+
+.editorconfig + vscode 插件 Prettier - Code formatter
+
 ### 开发环境和生产环境两份配置
 
 ```bash
