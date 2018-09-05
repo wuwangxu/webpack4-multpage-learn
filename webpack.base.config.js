@@ -15,13 +15,9 @@ const base = {
 	module: {
 		rules: [
 			{
+				// 为了方便这个放在第一位
 				test: /\.css$/,
-				use: [
-					'css-hot-loader', //支持热更新
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					'postcss-loader'
-				]
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
 			},
 			{
 				test: /\.(png|jpg|gif)$/,
@@ -78,7 +74,7 @@ const base = {
 		}),
 		//new ExtractTextPlugin("[name].css"), // 样式抽离不支持热更新
 		new MiniCssExtractPlugin({
-			filename: '[name].css',
+			filename: '[name]/[name].css',
 			chunkFilename: '[id].css'
 		}),
 		...final.htmls

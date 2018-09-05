@@ -8,15 +8,7 @@ base.devServer = {
 	hot: true
 };
 base.devtool = 'inline-source-map';
-base.module.rules.push({
-	test: /\.css$/,
-	use: [
-		'css-hot-loader', //支持热更新
-		MiniCssExtractPlugin.loader,
-		'css-loader',
-		'postcss-loader'
-	]
-});
+base.module.rules[0].use.unshift('css-hot-loader');
 base.plugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
 const config = {
 	...base
