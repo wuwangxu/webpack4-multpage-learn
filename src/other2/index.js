@@ -1,1 +1,1 @@
-console.log("other index.js")
+console.log('other index.js');
